@@ -1,5 +1,3 @@
-import { useRuntimeConfig } from '#imports'
-
 export const useCloudinary = () => {
   const config = useRuntimeConfig()
   const cloudName = (config.public?.cloudinaryCloudName as string) || 'hoopoe'
