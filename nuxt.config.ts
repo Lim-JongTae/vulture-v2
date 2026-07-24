@@ -6,15 +6,22 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/image',
     '@nuxt/icon',
-    '@pinia/nuxt',
     '@vite-pwa/nuxt',
     '@nuxtjs/sitemap',
-    '@nuxtjs/supabase',
     'nuxt-zod',
     'nuxt-tiptap-editor',
     '@vee-validate/nuxt'
   ],
   css: ['~/assets/css/main.css'],
+  pwa: {
+    registerType: 'autoUpdate',
+    devOptions: {
+      enabled: true
+    }
+  },
+  icon: {
+    serverBundle: false
+  },
   image: {
     cloudinary: {
       baseURL: 'https://res.cloudinary.com/hoopoe/image/upload/'
