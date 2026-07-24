@@ -14,5 +14,19 @@ export default defineNuxtConfig({
     'nuxt-tiptap-editor',
     '@vee-validate/nuxt'
   ],
-  css: ['~/assets/css/main.css']
+  css: ['~/assets/css/main.css'],
+  image: {
+    cloudinary: {
+      baseURL: 'https://res.cloudinary.com/hoopoe/image/upload/'
+    }
+  },
+  runtimeConfig: {
+    cloudinaryUrl: process.env.CLOUDINARY_URL,
+    cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
+    public: {
+      cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME || 'hoopoe',
+      cloudinaryApiKey: process.env.CLOUDINARY_API_KEY || '713324964544299',
+      cloudinaryFolder: process.env.CLOUDINARY_FOLDER || 'vulture'
+    }
+  }
 })
