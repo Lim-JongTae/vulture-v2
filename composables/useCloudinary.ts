@@ -1,7 +1,9 @@
+import { useRuntimeConfig } from '#imports'
+
 export const useCloudinary = () => {
   const config = useRuntimeConfig()
-  const cloudName = config.public.cloudinaryCloudName || 'hoopoe'
-  const defaultFolder = config.public.cloudinaryFolder || 'vulture'
+  const cloudName = (config.public?.cloudinaryCloudName as string) || 'hoopoe'
+  const defaultFolder = (config.public?.cloudinaryFolder as string) || 'vulture'
 
   /**
    * Cloudinary vulture 폴더 내 이미지 Full URL 생성
