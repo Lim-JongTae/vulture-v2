@@ -27,9 +27,11 @@
           <img 
             :src="item.image" 
             :alt="item.title"
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            class="w-full h-full object-cover transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105"
           />
-          <div class="absolute top-4 left-4 bg-obsidian/80 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">
+          <!-- 불투명 유리 오버레이 효과 (마우스 오버 시 선명해짐) -->
+          <div class="absolute inset-0 bg-white/10 backdrop-blur-md opacity-100 group-hover:opacity-0 transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] pointer-events-none"></div>
+          <div class="absolute top-4 left-4 bg-[#09090b]/80 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm z-10 transition-all duration-300 group-hover:!bg-[#00DC82] group-hover:!text-[#18181b]">
             {{ item.tag }}
           </div>
         </div>
@@ -47,7 +49,7 @@
             <span 
               v-for="spec in item.specs" 
               :key="spec"
-              class="text-[11px] font-semibold bg-[#f6f5f0] text-obsidian px-2.5 py-1 rounded-md"
+              class="text-[11px] font-semibold bg-[#00DC82] text-[#09090b] px-2.5 py-1 rounded-md transition-all duration-[800ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:bg-[#09090b] group-hover:!text-white dark:group-hover:bg-white dark:group-hover:!text-black cursor-default"
             >
               • {{ spec }}
             </span>
@@ -61,17 +63,36 @@
       <!-- Background Subtle Glow -->
       <div class="absolute -right-16 -top-16 w-80 h-80 bg-ember/20 rounded-full filter blur-3xl pointer-events-none"></div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-        <div class="lg:col-span-7 space-y-4">
-          <h3 class="text-[32px] sm:text-[46px] font-extrabold leading-tight tracking-tight font-serif-kr">
+      <!-- 기하학 생태계 애니메이션 배경 -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-100 z-0">
+        <!-- 순환하는 생태계 궤도 (동심원) -->
+        <svg class="absolute -left-20 -bottom-20 w-[500px] h-[500px] text-[#00DC82]/30" style="animation: spinSlow 30s linear infinite;" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2" />
+          <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="0.8" />
+          <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 4" />
+          <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="0.3" />
+          <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" stroke-width="0.3" />
+        </svg>
+        
+        <!-- 비행하는 V자 대형 (Chevron) -->
+        <svg class="absolute right-10 bottom-5 w-80 h-80 text-[#00DC82]/40" style="animation: floatGeo 8s ease-in-out infinite;" viewBox="0 0 100 100">
+          <path d="M10,30 L30,50 L50,30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M30,45 L50,65 L70,45" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.85" />
+          <path d="M50,60 L70,80 L90,60" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.6" />
+        </svg>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10 max-w-[960px] mx-auto w-full">
+        <div class="lg:col-span-7 space-y-4 lg:pl-12">
+          <h3 class="text-[32px] sm:text-[46px] font-extrabold leading-tight tracking-tight font-serif-kr text-[#00DC82]" style="text-shadow: 0 0 12px rgba(0, 220, 130, 0.6);">
             우리는 생명의<br />
             무게를 보존합니다.
           </h3>
         </div>
 
         <div class="lg:col-span-5 space-y-6">
-          <p class="text-[14px] sm:text-[15px] opacity-80 leading-relaxed font-normal">
-            울산 독수리 학교는 몽골에서 건너온 겨울 철새 독수리들의 생존을 돕고, 인간과 자연이 공존하는 생태 교육의 장을 마련합니다. 매년 겨울, 수천 킬로미터를 날아온 이 고귀한 생명체들에게 안전한 쉼터를 제공하는 구의 사명입니다.
+          <p class="text-[16px] sm:text-[18px] text-[#00DC82] leading-relaxed font-normal" style="text-shadow: 0 0 8px rgba(0, 220, 130, 0.55);">
+           수천 킬로미터를 날아왔지만, 겨울 들판엔 먹을 것이 없습니다. 울산 독수리 학교는 배고픈 독수리에게 먹이를 꾸준히 공급하여 몽골에서 건너온 겨울 철새 독수리들의 생존을 돕고, 인간과 자연이 공존하는 생태 교육의 장을 마련합니다.
           </p>
 
           <div>
@@ -79,7 +100,7 @@
               @click="$emit('open-join')"
               class="bg-white text-obsidian text-[13px] font-extrabold tracking-wider px-7 py-3 rounded-full hover:bg-ember hover:text-white transition-all shadow-md uppercase"
             >
-              JOIN US
+              함께해요
             </button>
           </div>
         </div>
@@ -98,34 +119,66 @@ const spotlightList = ref([
   {
     id: 1,
     tag: 'GALLERY',
-    title: '겨울 비행의 서막 : 첫 번째 정찰',
-    desc: '몽골 혜산 산맥에서 한반도 태화강까지 3,400km를 단 한 번의 비행 상승기류를 타고 수송되는 장엄한 독수리 군집의 활공 순간입니다.',
-    image: 'https://images.unsplash.com/photo-1574063413132-355dbfd83e0c?q=80&w=800',
-    specs: ['비행거리 3,400km', '상승 기류 글라이딩']
+    title: '마른 논 밭 위, 낮은 활공',
+    desc: '범서의 마른 논 둔치 위로 독수리 한 마리가 날개를 활짝 편 채 낮게 미끄러지듯 활공합니다. 겨울 바람을 타는 순간을 포착했습니다.',
+    image: 'https://res.cloudinary.com/hoopoe/image/upload/v1785044624/nn_dzp1fl.jpg',
+    specs: ['단독 활공', '저고도 비행']
   },
   {
     id: 2,
     tag: 'NATURE',
-    title: '고요한 대지 위의 파수꾼',
-    desc: '독수리는 공격적인 수리(Eagle)와 달리 사냥을 하지 않고 자연의 사체만을 먹어 세균과 바이러스 전염을 방지하는 생태계 위생 파수꾼입니다.',
-    image: 'https://images.unsplash.com/photo-1611003265857-e328d49463d9?q=80&w=800',
-    specs: ['자연 청소부 (Vulture)', '바이러스 사멸 위산']
+    title: '무리 속으로, 착지의 순간',
+    desc: '넓게 펼친 날개로 속도를 늦추며 착지하는 독수리. 이미 자리 잡은 동료 무리 곁으로 합류하는 찰나의 균형 잡힌 날갯짓입니다.',
+    image: 'https://res.cloudinary.com/hoopoe/image/upload/v1784886970/down2_avdlfq.jpg',
+    specs: ['착지 동작', '군집 생활']
   },
   {
     id: 3,
-    tag: 'RESEARCH',
-    title: '태화강의 겨울 손님들',
-    desc: '매년 11월부터 익년 3월까지 태화강변과 울주군 범서읍 평야 지대에서 동계 월동을 보내는 450여 마리의 멸종위기 야생생물 II급 보호 조류입니다.',
-    image: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?q=80&w=800',
-    specs: ['멸종위기 II급', '월동 개체 450+']
+    tag: 'NATURE',
+    title: '들판을 뒤덮은 검은 무리',
+    desc: '마른 겨울 들판 위, 수십 마리의 독수리가 한데 모여 앉은 진기한 광경입니다. 그 위로 한 마리가 무리를 살피듯 낮게 선회하고 있습니다.',
+    image: 'https://res.cloudinary.com/hoopoe/image/upload/v1784886966/group_oqe8pq.jpg',
+    specs: ['대규모 군집', '집단 취식 행동']
   },
   {
     id: 4,
     tag: 'SEASON',
-    title: '자연의 순환, 그 경이로운 순간',
-    desc: '울산 독수리 학교는 안전하게 소독된 멸균 축산 부산물 먹이를 공급하여 겨울철 탈진사 및 로드킬 등 2차 사고를 방지합니다.',
-    image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=800',
-    specs: ['안전 멸균 먹이 공급', '시민 수호대 모니터링']
+    title: '날개를 세운 팽팽한 대치',
+    desc: '먹이를 두고 두 독수리가 날개를 한껏 펼친 채 맞섭니다. 주변을 둘러싼 까마귀 떼는 그 결과를 조용히 지켜보고 있습니다.',
+    image: 'https://res.cloudinary.com/hoopoe/image/upload/v1784886897/stock-4_qytzjc.jpg',
+    specs: ['먹이 경쟁 행동', '까마귀와의 공존']
+  },
+    {
+    id: 5,
+    tag: 'SEASON',
+    title: '독수리식당 후원의 집, 첫 걸음',
+    desc: '범서회관식육식당이 독수리식당 후원의 집 1호로 함께합니다. 지역 상점과 시민들이 먹이 나눔에 동참하며 겨울 철새의 월동을 돕고 있습니다.',
+    image: 'https://res.cloudinary.com/hoopoe/image/upload/v1784886971/frandship_ehfmak.jpg',
+    specs: ['후원의 집 1호', '지역 상점 참여']
+  },
+   {
+    id: 6,
+    tag: 'SEASON',
+    title: '독수리 보러 가자, 태화강 탐조 현장',
+    desc: '2021 태화강흑두루미 독수리 탐조 행사에 참여한 시민들. 겨울 철새를 직접 관찰하며 생태 감수성을 키우는 현장 교육의 한 장면입니다.',
+    image: 'https://res.cloudinary.com/hoopoe/image/upload/v1785044610/schol_m6fapm.jpg',
+    specs: ['시민 탐조 행사', '현장 생태 교육 프로그램']
+  },
+  {
+    id: 7,
+    tag: 'SEASON',
+    title: '함께 나선 겨울 탐조의 발걸음',
+    desc: '마스크를 쓰고 모인 참가자들이 현수막을 펼쳐 든 채 기념 촬영. 코로나 시기에도 이어진 태화강 독수리 탐조 행사의 기록입니다.',
+    image: 'https://res.cloudinary.com/hoopoe/image/upload/v1785044610/schol_m6fapm.jpg',
+    specs: ['단체 탐조 활동', '방역 수칙 준수']
+  },
+  {
+    id: 8,
+    tag: 'RESEARCH',
+    title: '몽골에서 태화강까지, 추적된 비행 경로',
+    desc: 'GPS 위치 추적 장치로 기록된 독수리의 실제 이동 경로입니다. 몽골과 중국을 거쳐 한반도 태화강까지 이어지는 장거리 이주 항로를 시각화했습니다.',
+    image: 'https://res.cloudinary.com/hoopoe/image/upload/v1785044606/path_dpwqcf.jpg',
+    specs: ['GPS 위치 추적', '국제 이동 경로']
   }
 ])
 </script>
@@ -134,23 +187,26 @@ const spotlightList = ref([
 .font-serif-kr {
   font-family: 'Noto Serif KR', serif;
 }
-.text-obsidian {
-  color: #09090b;
-}
-.text-fog {
-  color: #71717a;
-}
 .text-ember {
   color: #ff5a00;
 }
 .bg-ember {
   background-color: #ff5a00;
 }
-.hover-lift {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
 .hover-lift:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 30px -10px rgba(9, 9, 11, 0.08);
+  box-shadow: 0 20px 35px -10px rgba(16, 185, 129, 0.3);
+}
+</style>
+
+<style>
+@keyframes floatGeo {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(8deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 </style>

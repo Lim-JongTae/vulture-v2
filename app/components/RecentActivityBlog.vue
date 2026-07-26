@@ -15,13 +15,13 @@
       <div class="flex gap-2">
         <button 
           @click="prevSlide"
-          class="w-11 h-11 flex items-center justify-center bg-white border border-black/10 rounded-xl hover:bg-[#f6f5f0] transition-colors shadow-sm text-obsidian"
+          class="w-11 h-11 flex items-center justify-center bg-white border border-black/10 rounded-xl hover:bg-[#f6f5f0] dark:hover:bg-zinc-800 transition-colors shadow-sm text-obsidian"
         >
           <span class="material-symbols-outlined text-[20px]">chevron_left</span>
         </button>
         <button 
           @click="nextSlide"
-          class="w-11 h-11 flex items-center justify-center bg-white border border-black/10 rounded-xl hover:bg-[#f6f5f0] transition-colors shadow-sm text-obsidian"
+          class="w-11 h-11 flex items-center justify-center bg-white border border-black/10 rounded-xl hover:bg-[#f6f5f0] dark:hover:bg-zinc-800 transition-colors shadow-sm text-obsidian"
         >
           <span class="material-symbols-outlined text-[20px]">chevron_right</span>
         </button>
@@ -61,7 +61,7 @@
         @click="currentPage = page"
         :class="[
           'w-8 h-8 rounded-lg font-bold transition-colors flex items-center justify-center',
-          currentPage === page ? 'bg-obsidian text-white' : 'text-fog hover:text-obsidian'
+          currentPage === page ? 'bg-obsidian text-white dark:text-black' : 'text-fog hover:text-obsidian'
         ]"
       >
         {{ page }}
@@ -82,28 +82,28 @@ const blogList = ref([
     date: '2024.11.02',
     category: 'ACTIVITY',
     title: '제1회 먹이주기 봉사 현장',
-    image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=800'
+    image: 'https://res.cloudinary.com/hoopoe/image/upload/v1784886898/stock-1_wetpzr.jpg'
   },
   {
     id: 2,
     date: '2024.10.28',
     category: 'EDUCATION',
     title: '생태 전문가 초청 강연',
-    image: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?q=80&w=800'
+    image: 'https://res.cloudinary.com/hoopoe/image/upload/v1784886897/stock-2_sk3bfx.jpg'
   },
   {
     id: 3,
     date: '2024.10.15',
     category: 'RESEARCH',
     title: '깃털 표본 데이터베이스 구축',
-    image: 'https://images.unsplash.com/photo-1611003265857-e328d49463d9?q=80&w=800'
+    image: 'https://res.cloudinary.com/hoopoe/image/upload/v1784886897/stock-3_mxofno.jpg'
   },
   {
     id: 4,
     date: '2024.10.01',
     category: 'NOTICE',
     title: '탐조 구역 환경 개선 안내',
-    image: 'https://images.unsplash.com/photo-1574063413132-355dbfd83e0c?q=80&w=800'
+    image: 'https://res.cloudinary.com/hoopoe/image/upload/v1785044500/2024%EB%85%84%EB%8F%85%EC%88%98%EB%A6%AC%ED%95%99%EA%B5%90%EC%A2%85%EA%B0%95_v9u36e.jpg'
   }
 ])
 
@@ -121,12 +121,6 @@ const nextSlide = () => {
 </script>
 
 <style scoped>
-.text-obsidian {
-  color: #09090b;
-}
-.text-fog {
-  color: #71717a;
-}
 .text-ember {
   color: #ff5a00;
 }

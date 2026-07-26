@@ -1,43 +1,11 @@
 <template>
-  <div class="bg-[#f6f5f0] text-[#18181b] selection:bg-[#ff5a00] selection:text-white min-h-screen font-sans scroll-smooth">
+  <div class="bg-[#f6f5f0] text-[#18181b] dark:bg-[#18181b] dark:text-[#ffffff] selection:bg-[#ff5a00] selection:text-white min-h-screen font-sans scroll-smooth transition-colors duration-500">
     
     <!-- Floating Navigation Capsule -->
-    <nav class="fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-32px)] max-w-[1080px] z-[100]">
-      <div id="main-nav" class="glass-panel rounded-full px-6 py-3.5 flex items-center justify-between shadow-sm transition-all duration-300">
-        <!-- Logo -->
-        <a href="#" class="flex items-center gap-3 group">
-          <div class="w-9 h-9 rounded-full bg-obsidian text-white flex items-center justify-center font-cinzel font-bold text-[16px] group-hover:bg-ember transition-colors">
-            U
-          </div>
-          <div>
-            <span class="font-bold text-[15px] text-obsidian tracking-tight block leading-none">울산 독수리 학교</span>
-            <span class="font-cinzel text-[10px] text-fog font-semibold tracking-widest block mt-0.5 uppercase">Ulsan Vulture School</span>
-          </div>
-        </a>
-
-        <!-- Desktop Navigation Links -->
-        <div class="hidden md:flex items-center gap-7">
-          <a class="text-[13px] font-medium text-obsidian uppercase tracking-wider hover:text-ember transition-colors" href="#hero">홈</a>
-          <a class="text-[13px] font-medium text-fog hover:text-obsidian uppercase tracking-wider transition-colors" href="#impact">블러그</a>
-          <a class="text-[13px] font-medium text-fog hover:text-obsidian uppercase tracking-wider transition-colors" href="#anatomy">소개</a>
-          <a class="text-[13px] font-medium text-fog hover:text-obsidian uppercase tracking-wider transition-colors" href="#programs">생태가이드</a>
-          <a class="text-[13px] font-medium text-fog hover:text-obsidian uppercase tracking-wider transition-colors" href="#gallery">Chronicles</a>
-        </div>
-
-        <!-- Action CTA -->
-        <div class="flex items-center gap-3">
-          <button @click="openModal('program')" class="hidden sm:inline-flex bg-cloud hover:bg-mist text-obsidian text-[12px] font-semibold tracking-wider px-4 py-2.5 rounded-full transition-colors">
-            봉사·체험 신청
-          </button>
-          <button @click="openModal('donation')" class="bg-obsidian text-white text-[12px] font-bold uppercase tracking-wider px-5 py-2.5 rounded-full hover:bg-ember transition-colors shadow-sm">
-            후원하기
-          </button>
-        </div>
-      </div>
-    </nav>
+    <GlobalHeader @open-modal="openModal" />
 
     <!-- Hero Section -->
-    <section id="hero" class="w-full min-h-[92vh] bg-[#edece4] relative overflow-hidden rounded-b-[48px] mb-20 pt-28 pb-16 flex flex-col justify-center">
+    <section id="hero" class="w-full min-h-[92vh] bg-[#edece4] dark:bg-[#1e1e21] relative overflow-hidden rounded-b-[48px] mb-20 pt-28 pb-16 flex flex-col justify-center transition-colors duration-500">
       <div class="max-w-[1240px] mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div class="lg:col-span-5 lg:order-2 h-[460px] lg:h-[600px] relative w-full flex items-center justify-center">
           <ClientOnly>
@@ -53,44 +21,44 @@
         <div class="lg:col-span-7 lg:order-1 z-10 space-y-7 pt-6">
           <div class="inline-flex items-center gap-2 bg-obsidian/5 border border-obsidian/10 px-4 py-1.5 rounded-full">
             <span class="w-2 h-2 rounded-full bg-ember animate-pulse"></span>
-            <span class="text-[12px] font-semibold text-obsidian uppercase tracking-widest">{{ seasonYear }} Winter Sanctuary Issue No.01</span>
+            <span class="text-[12px] font-semibold text-obsidian uppercase tracking-widest"><strong>{{ seasonYear }}</strong> Winter Sanctuary Issue No.01</span>
           </div>
 
-          <h1 class="text-[44px] sm:text-[62px] lg:text-[76px] font-normal leading-[1.04] text-obsidian tracking-tight">
-            ULSAN<br/>
+          <h1 class="text-[44px] sm:text-[62px] lg:text-[76px] font-bold leading-[1.04] text-obsidian dark:text-white tracking-tight">
+            울    산<br/>
             <span class="font-serif-kr font-bold tracking-normal">독수리 학교</span><br/>
-            <span class="text-obsidian/60 italic font-serif text-[38px] sm:text-[54px] lg:text-[64px]">The Flight Sanctuary</span>
+            <span class="text-obsidian/60 dark:text-white/60 italic font-serif text-[38px] sm:text-[54px] lg:text-[64px]">The Flight Sanctuary</span>
           </h1>
 
-          <p class="text-[16px] sm:text-[18px] text-obsidian/80 leading-relaxed max-w-xl font-normal">
+          <p class="text-[16px] sm:text-[18px] text-obsidian/80 dark:text-white/80 leading-relaxed max-w-xl font-normal">
             몽골 고원에서 3,400km를 넘어온 겨울 철새 독수리(Cinereous Vulture)들의 고귀한 생존 여정. 태화강과 울주 생태 거점을 지키는 과학적 모니터링과 시민 생태 공동체의 기록입니다.
           </p>
-
+ 
           <div class="pt-4 flex flex-wrap items-center gap-4">
-            <a href="#anatomy" class="inline-flex items-center gap-3 bg-obsidian text-white text-[14px] font-semibold px-7 py-4 rounded-full hover:bg-ember transition-all shadow-lg hover:shadow-xl">
+            <a href="#anatomy" class="inline-flex items-center gap-3 bg-[#09090b] dark:bg-zinc-800 text-white text-[14px] font-semibold px-7 py-4 rounded-full hover:bg-ember transition-colors duration-300 shadow-lg hover:shadow-xl">
               <span>생태 도감 & 비행 가이드</span>
               <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
             </a>
-            <button @click="openModal('program')" class="inline-flex items-center gap-2 border border-obsidian/30 text-obsidian text-[14px] font-medium px-6 py-4 rounded-full hover:bg-obsidian hover:text-white transition-all">
+            <button id="btn-volunteer" @click="openModal('program')" class="group inline-flex items-center gap-2 border border-obsidian/30 dark:border-white/30 text-[#09090b] dark:text-white bg-transparent text-[14px] font-medium px-6 py-4 rounded-full transition-all duration-300">
               <span class="material-symbols-outlined text-[18px]">volunteer_activism</span>
               <span>먹이주기 봉사 참가하기</span>
             </button>
           </div>
-
-          <div class="pt-6 border-t border-obsidian/10 flex items-center gap-8">
+ 
+          <div class="pt-6 border-t border-obsidian/10 dark:border-white/10 flex items-center gap-8">
             <div>
-              <div class="text-[24px] font-bold text-obsidian font-cinzel">420+</div>
-              <div class="text-[12px] text-fog font-medium">월동 관측 개체수</div>
+              <div class="text-[24px] font-bold text-obsidian dark:text-white font-cinzel">420+</div>
+              <div class="text-[12px] text-fog dark:text-gray-400 font-medium">월동 관측 개체수</div>
             </div>
-            <div class="h-8 w-[1px] bg-obsidian/10"></div>
+            <div class="h-8 w-[1px] bg-obsidian/10 dark:bg-white/10"></div>
             <div>
-              <div class="text-[24px] font-bold text-obsidian font-cinzel">3,400km</div>
-              <div class="text-[12px] text-fog font-medium">몽골-울산 횡단거리</div>
+              <div class="text-[24px] font-bold text-obsidian dark:text-white font-cinzel">3,400km</div>
+              <div class="text-[12px] text-fog dark:text-gray-400 font-medium">몽골-울산 횡단거리</div>
             </div>
-            <div class="h-8 w-[1px] bg-obsidian/10"></div>
+            <div class="h-8 w-[1px] bg-obsidian/10 dark:bg-white/10"></div>
             <div>
-              <div class="text-[24px] font-bold text-obsidian font-cinzel">3.1m</div>
-              <div class="text-[12px] text-fog font-medium">평균 윙스팬 (Wingspan)</div>
+              <div class="text-[24px] font-bold text-obsidian dark:text-white font-cinzel">3.1m</div>
+              <div class="text-[12px] text-fog dark:text-gray-400 font-medium">평균 윙스팬 (Wingspan)</div>
             </div>
           </div>
         </div>
@@ -161,12 +129,12 @@
           
           <!-- Left Text Content -->
           <div class="lg:col-span-6 space-y-6">
-            <div class="inline-block bg-obsidian text-white text-[12px] font-bold px-3 py-1 rounded-badge uppercase">SPECIES SPECS</div>
-            <h2 class="text-[32px] sm:text-[44px] font-bold text-obsidian leading-tight">
+            <div class="inline-block bg-[#09090b] text-white dark:bg-white dark:text-[#09090b] text-[12px] font-bold px-3 py-1 rounded-badge uppercase">SPECIES SPECS</div>
+            <h2 class="text-[32px] sm:text-[44px] font-bold text-obsidian dark:text-white leading-tight">
               자연의 청소부,<br/>
               <span class="text-ember">독수리(Cinereous Vulture)</span> 생태 백과
             </h2>
-            <p class="text-fog text-[15px] leading-relaxed">
+            <p class="text-fog dark:text-white text-[15px] leading-relaxed">
               독수리(*Aegypius monachus*)는 독수리목 수리과의 대형 사체 먹이 조류입니다. 흔히 말하는 공격적인 수리(Eagle)와 달리 사냥을 하지 않고 사체만을 먹어 질병 확산을 막는 생태계의 소중한 파수꾼입니다.
             </p>
 
@@ -176,16 +144,16 @@
                 v-for="(acc, index) in accordions" 
                 :key="index"
                 @click="toggleAccordion(index)"
-                class="border border-cloud rounded-2xl p-4 bg-[#f6f5f0]/50 cursor-pointer hover:bg-[#f6f5f0] transition-colors"
+                class="group border border-[#09090b]/10 dark:border-white/10 rounded-2xl p-4 bg-zinc-100/70 dark:bg-zinc-900/50 cursor-pointer hover:bg-[#09090b] dark:hover:bg-white transition-all duration-300"
               >
-                <div class="flex justify-between items-center font-bold text-obsidian text-[15px]">
+                <div class="flex justify-between items-center font-bold text-[#09090b] dark:text-white text-[15px] group-hover:!text-white dark:group-hover:!text-[#09090b] transition-colors duration-300">
                   <span class="flex items-center gap-2">
                     <span class="material-symbols-outlined text-ember">{{ acc.icon }}</span> 
                     {{ acc.title }}
                   </span>
-                  <span class="material-symbols-outlined">{{ activeAccordion === index ? 'expand_less' : 'expand_more' }}</span>
+                  <span class="material-symbols-outlined text-[#09090b] dark:text-white group-hover:!text-white dark:group-hover:!text-[#09090b] transition-colors duration-300">{{ activeAccordion === index ? 'expand_less' : 'expand_more' }}</span>
                 </div>
-                <p v-show="activeAccordion === index" class="text-[13px] text-fog mt-2 leading-relaxed">
+                <p v-show="activeAccordion === index" class="text-[13px] text-zinc-600 dark:text-white group-hover:!text-zinc-200 dark:group-hover:!text-zinc-900 mt-2 leading-relaxed transition-colors duration-300">
                   {{ acc.content }}
                 </p>
               </div>
@@ -520,7 +488,7 @@
 
         <!-- Bottom Copyright -->
         <div class="pt-8 border-t border-cloud flex flex-col sm:flex-row justify-between items-center gap-4 text-[12px] text-fog">
-          <div>© 2024-2026 울산 독수리 학교 (Ulsan Vulture School). All rights reserved.</div>
+          <div>© {{ seasonYear }} 울산 독수리 학교 (Ulsan Vulture School). All rights reserved.</div>
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
             <span class="font-mono">System Active • Winter Season Online</span>
@@ -1079,27 +1047,12 @@ function initThreeJs(THREE: any) {
 .font-cinzel {
   font-family: 'Cinzel', serif;
 }
-.glass-panel {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-}
 .hover-lift {
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .hover-lift:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 30px -10px rgba(9, 9, 11, 0.08);
-}
-.text-obsidian {
-  color: #09090b;
-}
-.bg-obsidian {
-  background-color: #09090b;
-}
-.text-fog {
-  color: #71717a;
 }
 .text-ember {
   color: #ff5a00;

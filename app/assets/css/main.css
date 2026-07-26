@@ -115,3 +115,188 @@ body {
 .animate-spin-slow {
   animation: spinSlow 20s linear infinite;
 }
+
+/* Global Dark Mode Color Palette Overrides */
+.dark {
+  --color-paper: #18181b;
+  --color-obsidian: #ffffff;
+}
+
+.dark body {
+  background-color: #18181b;
+  color: #ffffff;
+}
+
+/* Global Dark Mode Utilities */
+.text-obsidian {
+  color: #09090b;
+  transition: color 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.dark .text-obsidian {
+  color: #ffffff;
+}
+
+.text-fog {
+  color: #71717a;
+  transition: color 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.dark .text-fog {
+  color: #a1a1aa;
+}
+
+.bg-obsidian {
+  background-color: #09090b;
+  transition: background-color 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.dark .bg-obsidian {
+  background-color: #ffffff;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: background 0.5s cubic-bezier(0.19, 1, 0.22, 1), border-color 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Navigation capsule background remains light and readable even in dark mode */
+.dark .glass-panel {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Prevent dark mode color inversion inside the floating navigation bar to maintain black text and contrast */
+.dark #main-nav .text-obsidian,
+.dark #main-nav span.text-obsidian {
+  color: #09090b !important;
+}
+
+.dark #main-nav .text-fog {
+  color: #71717a !important;
+}
+
+.dark #main-nav .bg-obsidian {
+  background-color: #09090b !important;
+  color: #ffffff !important;
+}
+
+.dark #main-nav .bg-cloud {
+  background-color: #ececee !important;
+}
+
+.dark #main-nav .bg-cloud:hover {
+  background-color: #d4d4d8 !important;
+}
+
+/* Main Navigation Link Styling & Hovers (Light & Dark Modes) */
+#main-nav nav a {
+  color: #71717a !important;
+  transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+#main-nav nav a:hover {
+  color: #09090b !important;
+}
+
+#main-nav nav a[href="#hero"] {
+  color: #09090b !important;
+}
+
+#main-nav nav a[href="#hero"]:hover {
+  color: #ff5a00 !important; /* Ember */
+}
+
+/* Ensure the same hover behavior under dark mode since nav capsule stays white */
+.dark #main-nav nav a {
+  color: #71717a !important;
+}
+
+.dark #main-nav nav a:hover {
+  color: #09090b !important;
+}
+
+.dark #main-nav nav a[href="#hero"] {
+  color: #09090b !important;
+}
+
+.dark #main-nav nav a[href="#hero"]:hover {
+  color: #ff5a00 !important;
+}
+
+
+/* Force overall body and container dark backgrounds instead of hardcoded tailwind bg classes */
+.dark .bg-\[\#f6f5f0\],
+.dark div.bg-\[\#f6f5f0\] {
+  background-color: #121214 !important;
+}
+
+.dark .bg-\[\#edece4\],
+.dark section.bg-\[\#edece4\] {
+  background-color: #18181b !important;
+}
+
+.dark .bg-white,
+.dark div.bg-white {
+  background-color: #1e1e21 !important;
+}
+
+/* Ensure text and border contrast on dark backgrounds */
+.dark .text-obsidian\/80 {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.dark .text-obsidian\/60 {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.dark .text-obsidian\/10 {
+  color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark .border-black\/10 {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark .border-black\/5 {
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Volunteer Button Hover Styles Override (Forces background and font color inversion) */
+#btn-volunteer {
+  color: #09090b !important;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1) !important;
+}
+
+#btn-volunteer span {
+  color: #09090b !important;
+  transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1) !important;
+}
+
+#btn-volunteer:hover {
+  background-color: #09090b !important;
+  color: #ffffff !important;
+}
+
+#btn-volunteer:hover span {
+  color: #ffffff !important;
+}
+
+/* Dark Mode adaptation */
+.dark #btn-volunteer {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.dark #btn-volunteer span {
+  color: #ffffff !important;
+}
+
+.dark #btn-volunteer:hover {
+  background-color: #09090b !important;
+  color: #ffffff !important;
+}
+
+.dark #btn-volunteer:hover span {
+  color: #ffffff !important;
+}
