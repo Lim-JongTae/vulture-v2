@@ -6,7 +6,7 @@
         FEATURED OBSERVATORY
       </span>
       <h2 class="text-[34px] sm:text-[44px] font-bold text-obsidian tracking-tight">
-        운영자 픽 • 독수리 주요 생태 포토 & 8대 정보
+        독수리 주요 생태 포토 & 정보
       </h2>
       <p class="text-fog text-[15px] leading-relaxed">
         태화강을 찾는 몽골 철새 독수리의 주요 생태적 특징과 현장 아카이브 기록입니다.

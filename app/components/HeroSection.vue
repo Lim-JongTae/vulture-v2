@@ -32,7 +32,7 @@
       <div class="hero-anim-item flex flex-wrap items-center justify-center gap-4 mb-6 z-20">
         <NuxtLink 
           to="/event" 
-          class="inline-flex items-center gap-2.5 px-8 py-4 bg-gradient-to-r from-[#cbfffc] via-[#edfffe] to-[#fad1ff] text-[#012624] font-bold text-sm sm:text-base rounded-md transition-all duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(203,255,252,0.5)] cursor-pointer"
+          class="inline-flex items-center gap-2.5 px-8 py-4 bg-gradient-to-r from-[#cbfffc] via-[#edfffe] to-[#fad1ff] text-[#012624] font-bold text-sm sm:text-base rounded-md transition-all duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(203,0,0.5)] cursor-pointer"
         >
           <span>먹이주기 봉사 신청</span>
           <UIcon name="i-heroicons-arrow-up-right" class="w-5 h-5" />

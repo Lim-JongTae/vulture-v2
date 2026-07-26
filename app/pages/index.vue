@@ -17,10 +17,10 @@
 
         <!-- Desktop Navigation Links -->
         <div class="hidden md:flex items-center gap-7">
-          <a class="text-[13px] font-medium text-obsidian uppercase tracking-wider hover:text-ember transition-colors" href="#hero">Overview</a>
-          <a class="text-[13px] font-medium text-fog hover:text-obsidian uppercase tracking-wider transition-colors" href="#impact">Statistics</a>
-          <a class="text-[13px] font-medium text-fog hover:text-obsidian uppercase tracking-wider transition-colors" href="#anatomy">Ecological Guide</a>
-          <a class="text-[13px] font-medium text-fog hover:text-obsidian uppercase tracking-wider transition-colors" href="#programs">Programs</a>
+          <a class="text-[13px] font-medium text-obsidian uppercase tracking-wider hover:text-ember transition-colors" href="#hero">홈</a>
+          <a class="text-[13px] font-medium text-fog hover:text-obsidian uppercase tracking-wider transition-colors" href="#impact">블러그</a>
+          <a class="text-[13px] font-medium text-fog hover:text-obsidian uppercase tracking-wider transition-colors" href="#anatomy">소개</a>
+          <a class="text-[13px] font-medium text-fog hover:text-obsidian uppercase tracking-wider transition-colors" href="#programs">생태가이드</a>
           <a class="text-[13px] font-medium text-fog hover:text-obsidian uppercase tracking-wider transition-colors" href="#gallery">Chronicles</a>
         </div>
 
@@ -39,12 +39,21 @@
     <!-- Hero Section -->
     <section id="hero" class="w-full min-h-[92vh] bg-[#edece4] relative overflow-hidden rounded-b-[48px] mb-20 pt-28 pb-16 flex flex-col justify-center">
       <div class="max-w-[1240px] mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        
-        <!-- Left Editorial Text -->
-        <div class="lg:col-span-7 z-10 space-y-7 pt-6">
+        <div class="lg:col-span-5 lg:order-2 h-[460px] lg:h-[600px] relative w-full flex items-center justify-center">
+          <ClientOnly>
+            <div 
+              class="w-full h-full bg-transparent relative" 
+              style="-webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 98%); mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 98%);"
+            >
+              <div ref="heroThreeContainer" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
+            </div>
+          </ClientOnly>
+        </div>
+
+        <div class="lg:col-span-7 lg:order-1 z-10 space-y-7 pt-6">
           <div class="inline-flex items-center gap-2 bg-obsidian/5 border border-obsidian/10 px-4 py-1.5 rounded-full">
             <span class="w-2 h-2 rounded-full bg-ember animate-pulse"></span>
-            <span class="text-[12px] font-semibold text-obsidian uppercase tracking-widest">2024-2025 Winter Sanctuary Issue No.01</span>
+            <span class="text-[12px] font-semibold text-obsidian uppercase tracking-widest">{{ seasonYear }} Winter Sanctuary Issue No.01</span>
           </div>
 
           <h1 class="text-[44px] sm:text-[62px] lg:text-[76px] font-normal leading-[1.04] text-obsidian tracking-tight">
@@ -57,7 +66,6 @@
             몽골 고원에서 3,400km를 넘어온 겨울 철새 독수리(Cinereous Vulture)들의 고귀한 생존 여정. 태화강과 울주 생태 거점을 지키는 과학적 모니터링과 시민 생태 공동체의 기록입니다.
           </p>
 
-          <!-- Status Indicator & Action CTA -->
           <div class="pt-4 flex flex-wrap items-center gap-4">
             <a href="#anatomy" class="inline-flex items-center gap-3 bg-obsidian text-white text-[14px] font-semibold px-7 py-4 rounded-full hover:bg-ember transition-all shadow-lg hover:shadow-xl">
               <span>생태 도감 & 비행 가이드</span>
@@ -69,7 +77,6 @@
             </button>
           </div>
 
-          <!-- Mini Live Stat Badge -->
           <div class="pt-6 border-t border-obsidian/10 flex items-center gap-8">
             <div>
               <div class="text-[24px] font-bold text-obsidian font-cinzel">420+</div>
@@ -87,18 +94,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Right 3D Visual Observatory Canvas (Seamless Organic Boundary) -->
-        <div class="lg:col-span-5 h-[460px] lg:h-[600px] relative w-full flex items-center justify-center">
-          <div 
-            class="w-full h-full bg-transparent relative" 
-            style="-webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 98%); mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 98%);"
-          >
-            <!-- Three.js Target Canvas Container -->
-            <div ref="heroThreeContainer" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
-          </div>
-        </div>
-
       </div>
     </section>
 
@@ -687,6 +682,25 @@ useHead({
   script: [
     { src: 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', defer: true }
   ]
+})
+const seasonYear = computed(() => {
+  const now = new Date()
+  const year = now.getFullYear()
+  const month = now.getMonth() + 1 // 1~12
+
+  let startYear
+  if (month >= 11) {
+    // 11~12월: 올해가 시즌 시작
+    startYear = year
+  } else if (month <= 3) {
+    // 1~3월: 작년에 시작한 시즌이 이어지는 중
+    startYear = year - 1
+  } else {
+    // 4~10월: 비시즌, 다가올 시즌을 표시
+    startYear = year
+  }
+
+  return `${startYear}-${startYear + 1}`
 })
 
 // --- Refs & Reactive State ---
