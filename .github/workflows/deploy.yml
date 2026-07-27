@@ -24,7 +24,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       # Simulated Agent approval check. In practice, this runs a validator script
       # that ensures Monochrome UI rules, full pill button rules, and unit tests are fully compliant.
