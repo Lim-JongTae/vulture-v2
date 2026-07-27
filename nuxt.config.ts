@@ -37,11 +37,16 @@ export default defineNuxtConfig({
       cloudinaryFolder: process.env.CLOUDINARY_FOLDER || 'vulture'
     }
   },
+  nitro: {
+    externals: {
+      inline: ['prisma-generated'],
+      external: ['pg', 'pg-native', '@prisma/adapter-pg'],
+    },
+  },
   typescript: {
     tsConfig: {
       compilerOptions: {
-        // @ts-ignore
-        libReplacement: undefined
+        libReplacement: false
       }
     }
   }
