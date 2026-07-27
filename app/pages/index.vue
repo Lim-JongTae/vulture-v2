@@ -983,6 +983,7 @@ function initThreeJs(THREE: any) {
 
     for (let i = 0; i < particleCount; i++) {
       const vel = velocities[i]
+      if (!vel) continue
       const isCircle = i < circleCount
       const targetPos = isCircle ? posArrCircle : posArrEllipse
       const idx = isCircle ? i * 3 : (i - circleCount) * 3

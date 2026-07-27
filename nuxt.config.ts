@@ -36,5 +36,13 @@ export default defineNuxtConfig({
       cloudinaryApiKey: process.env.CLOUDINARY_API_KEY || '713324964544299',
       cloudinaryFolder: process.env.CLOUDINARY_FOLDER || 'vulture'
     }
+  },
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        // @ts-ignore
+        libReplacement: undefined
+      }
+    }
   }
 })

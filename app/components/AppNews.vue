@@ -28,7 +28,7 @@
             :src="logo" 
             alt="언론사 로고" 
             class="w-5 h-5 bg-white border border-zinc-200 dark:border-zinc-850" 
-            @error="(e) => e.target.style.display = 'none'"
+            @error="handleLogoError"
           />
           <span class="text-[13px] font-semibold text-zinc-500 dark:text-zinc-400 tracking-wider uppercase">{{ data.name || '언론사 정보 없음' }}</span>
         </div>
@@ -102,21 +102,16 @@ const openSite = () => {
     window.open(props.data.url, '_blank')
   }
 }
+
+const handleLogoError = (event: Event) => {
+  const target = event.target as HTMLImageElement
+  if (target) {
+    target.style.display = 'none'
+  }
+}
 </script>
 
 <style scoped>
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;  
-  overflow: hidden;
-}
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;  
-  overflow: hidden;
-}
 .card-wrapper {
   will-change: transform;
 }

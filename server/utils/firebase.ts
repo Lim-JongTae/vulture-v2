@@ -9,10 +9,11 @@ import { useRuntimeConfig } from '#imports'
 export function getFirebaseAdminDb() {
   const config = useRuntimeConfig()
   
-  const projectId = config.firebaseProjectId || globalThis.process?.env?.FIREBASE_PROJECT_ID
-  const clientEmail = config.firebaseClientEmail || globalThis.process?.env?.FIREBASE_CLIENT_EMAIL
+  const projectId = (config.firebaseProjectId || globalThis.process?.env?.FIREBASE_PROJECT_ID) as string | undefined
+  const clientEmail = (config.firebaseClientEmail || globalThis.process?.env?.FIREBASE_CLIENT_EMAIL) as string | undefined
   // Replace escaped newlines commonly stored in process.env
-  const privateKey = (config.firebasePrivateKey || globalThis.process?.env?.FIREBASE_PRIVATE_KEY)?.replace(/\\n/g, '\n')
+  const rawKey = config.firebasePrivateKey || globalThis.process?.env?.FIREBASE_PRIVATE_KEY
+  const privateKey = typeof rawKey === 'string' ? rawKey.replace(/\\n/g, '\n') : undefined
 
   // Safe fallback if Firebase Admin config is missing
   if (!projectId || !clientEmail || !privateKey) {
@@ -22,7 +23,7 @@ export function getFirebaseAdminDb() {
 
   // Check if firebase admin app is already initialized
   const apps = getApps()
-  let adminApp
+  let adminApp: any
   
   if (apps.length === 0) {
     adminApp = initializeApp({
@@ -35,6 +36,8 @@ export function getFirebaseAdminDb() {
   } else {
     adminApp = apps[0]
   }
+
+  if (!adminApp) return null
 
   return getFirestore(adminApp)
 }

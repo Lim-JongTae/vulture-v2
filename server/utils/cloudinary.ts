@@ -52,9 +52,9 @@ export async function uploadToCloudinary(
 
     const formData = new FormData()
     formData.append('file', base64File)
-    formData.append('upload_preset', uploadPreset)
+    formData.append('upload_preset', uploadPreset as string)
     formData.append('folder', folder)
-    formData.append('public_id', fileName.split('.')[0])
+    formData.append('public_id', (fileName.split('.')[0] || '') as string)
 
     const response = await $fetch<CloudinaryUploadResponse>(url, {
       method: 'POST',

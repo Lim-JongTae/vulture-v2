@@ -1,7 +1,8 @@
+import { defineEventHandler } from 'h3'
 import { prisma } from '../utils/prisma'
 import type { NewsItem } from '../../types/my-types'
 
-export default defineEventHandler(async (event): Promise<NewsItem[]> => {
+export default defineEventHandler(async (event) => {
   try {
     const news = await prisma.news.findMany({
       orderBy: {

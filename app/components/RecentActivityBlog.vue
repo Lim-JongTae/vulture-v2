@@ -58,7 +58,7 @@
       <button 
         v-for="page in pages" 
         :key="page"
-        @click="currentPage = page"
+        @click="changePage(page)"
         :class="[
           'w-8 h-8 rounded-lg font-bold transition-colors flex items-center justify-center',
           currentPage === page ? 'bg-obsidian text-white dark:text-black' : 'text-fog hover:text-obsidian'
@@ -116,6 +116,12 @@ const prevSlide = () => {
 const nextSlide = () => {
   if (typeof currentPage.value === 'number' && currentPage.value < 12) {
     currentPage.value++
+  }
+}
+
+const changePage = (page: string | number) => {
+  if (typeof page === 'number') {
+    currentPage.value = page
   }
 }
 </script>

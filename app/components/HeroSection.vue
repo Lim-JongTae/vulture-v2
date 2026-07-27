@@ -142,7 +142,7 @@ const initVultureAnimation = () => {
       vx: (Math.random() - 0.5) * 0.8 + 0.5, // Flowing right like river wind
       vy: (Math.random() - 0.5) * 0.4,
       alpha: Math.random() * 0.7 + 0.3,
-      color: colors[Math.floor(Math.random() * colors.length)]
+      color: colors[Math.floor(Math.random() * colors.length)] || '#ffffff'
     })
   }
 
