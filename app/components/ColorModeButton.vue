@@ -50,7 +50,7 @@ const startViewTransition = (event: MouseEvent) => {
       :icon="nextTheme === 'dark' ? 'i-heroicons-sun-20-solid' : 'i-heroicons-moon-20-solid'"
       color="neutral"
       variant="ghost"
-      class="rounded-full p-2 [&_span]:!w-6 [&_span]:!h-6 flex items-center justify-center transition-all duration-300"
+      class="rounded-full p-2 [&_span]:!w-6 [&_span]:!h-6 flex items-center justify-center transition-all duration-300 hover:!bg-zinc-200 hover:!text-zinc-600 dark:!text-zinc-600 dark:hover:!bg-zinc-800/50 dark:hover:!text-zinc-200"
       @click="startViewTransition"
     />
     <template #fallback>

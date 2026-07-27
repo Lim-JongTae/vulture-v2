@@ -10,7 +10,8 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     'nuxt-zod',
     'nuxt-tiptap-editor',
-    '@vee-validate/nuxt'
+    '@vee-validate/nuxt',
+    '@pinia/nuxt'
   ],
   css: ['~/assets/css/main.css'],
   pwa: {

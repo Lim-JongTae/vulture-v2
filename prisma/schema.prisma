@@ -1,0 +1,21 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model News {
+  id          Int      @id @default(autoincrement())
+  name        String?
+  author      String?
+  title       String
+  description String?  @db.Text
+  url         String   @unique
+  urlToImage  String?  @db.Text
+  publishedAt String?
+  content     String?  @db.Text
+}
